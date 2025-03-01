@@ -32,7 +32,7 @@ const Header = ({ scrollY }) => {
           <a href="#features" className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition">Features</a>
           <a href="#process" className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition">Process</a>
           <a href="#faq" className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition">FAQ</a>
-          <a href="#contact" className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition">Contact</a>
+          <a href="/contact" className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition">Contact</a>
           <button className="bg-primary hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-full transition" onClick={()=> navigate('/login')}>
             Get Started
           </button>
