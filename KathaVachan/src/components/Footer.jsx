@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { FaInstagram, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -15,16 +16,16 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-secondary hover:text-primary transition">
-                <span className="material-symbols-rounded">facebook</span>
+                <span className="material-symbols-rounded"><FaFacebook/></span>
               </a>
               <a href="#" className="text-secondary hover:text-primary transition">
-                <span className="material-symbols-rounded">twitter</span>
+                <span className="material-symbols-rounded"><FaTwitter/></span>
               </a>
               <a href="#" className="text-secondary hover:text-primary transition">
-                <span className="material-symbols-rounded">instagram</span>
+                <span className="material-symbols-rounded"><FaInstagram/></span>
               </a>
               <a href="#" className="text-secondary hover:text-primary transition">
-                <span className="material-symbols-rounded">linkedin</span>
+                <span className="material-symbols-rounded"><FaLinkedin/></span>
               </a>
             </div>
           </div>
