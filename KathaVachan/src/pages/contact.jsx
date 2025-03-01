@@ -141,7 +141,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                    placeholder="John Doe"
+                    placeholder="Enter you name here"
                   />
                 </div>
                 
