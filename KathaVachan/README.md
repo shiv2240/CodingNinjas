@@ -70,6 +70,4 @@ npm run dev
 - Aditya Kumar Thakur
 - Shubham Kumar
 
-## 📜 License
-This project is licensed under the MIT License.
 
