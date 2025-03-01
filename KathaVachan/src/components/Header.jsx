@@ -23,10 +23,13 @@ const Header = ({ scrollY }) => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'py-5'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#" className="flex items-center">
-          <img src="/logo.svg" alt="KathaVachan Logo" className="h-10 w-10" />
-          <span className="ml-2 text-xl font-semibold">KathaVachan</span>
-        </a>
+        <button
+      onClick={() => navigate("/")}
+      className="flex items-center focus:outline-none"
+    >
+      <img src="/logo.svg" alt="KathaVachan Logo" className="h-10 w-10" />
+      <span className="ml-2 text-xl font-semibold">KathaVachan</span>
+    </button>
         
         <nav className="hidden md:flex items-center space-x-8">
           <a href="#features" className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition">Features</a>
