@@ -61,7 +61,7 @@ const Header = ({ scrollY }) => {
         >
           <div className="container mx-auto px-4 py-6 flex flex-col space-y-4">
             <a 
-              href="#features" 
+              href="/features" 
               className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -82,7 +82,7 @@ const Header = ({ scrollY }) => {
               FAQ
             </a>
             <a 
-              href="#contact" 
+              href="/contact" 
               className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >

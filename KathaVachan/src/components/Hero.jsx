@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const Hero = ({ setIsAssistantOpen }) => {
+  const navigate = useNavigate(); 
   return (
     <section className="min-h-screen pt-24 flex items-center relative overflow-hidden">
       <div className="hero-gradient absolute inset-0 z-0"></div>
@@ -27,12 +29,12 @@ const Hero = ({ setIsAssistantOpen }) => {
                 >
                   Start Voice Assistant
                 </button>
-                <a 
-                  href="#learn-more" 
+                <button 
+                  onClick={() => navigate('/learnmore')}
                   className="border border-dark dark:border-light hover:border-primary dark:hover:border-primary text-dark dark:text-light hover:text-primary dark:hover:text-primary font-semibold py-3 px-8 rounded-full transition duration-300 text-center"
                 >
                   Learn More
-                </a>
+                </button>
               </div>
             </motion.div>
           </div>
