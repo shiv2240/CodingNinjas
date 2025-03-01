@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.22.0",
     "@react-three/drei": "^9.97.0",
     "@react-three/fiber": "^8.15.16",
     "firebase": "^11.4.0",
