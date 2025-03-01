@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,7 @@ const Contact = () => {
   };
 
   return (
+    <>
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
       <Header />
       <div className="container mx-auto px-4">
@@ -238,6 +240,8 @@ const Contact = () => {
         </div>
       </div>
     </section>
+    <Footer/>
+    </>
   );
 };
 

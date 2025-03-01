@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border border-gray-200 rounded-lg mb-4 overflow-hidden">
+    <div className="border border-gray-200 rounded-lg mb-4 overflow-hidden  ">
       <button
-        className="w-full p-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
+        className="w-full p-4 text-left flex justify-between items-center  transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-lg font-medium text-gray-900">{question}</h3>
+        <h3 className="text-lg font-medium text-white transition-transform duration-300 hover:scale-105">{question}</h3>
         <ChevronDown
           className={`text-blue-500 transition-transform duration-300 ${
             isOpen ? "rotate-180" : ""
@@ -28,8 +29,8 @@ const FAQItem = ({ question, answer }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="p-4 bg-gray-50 border-t border-gray-200">
-              <p className="text-gray-700">{answer}</p>
+            <div className="p-4  border-t border-gray-200">
+              <p className="backgroung-transparent">{answer}</p>
             </div>
           </motion.div>
         )}
@@ -67,37 +68,28 @@ const FAQ = () => {
     },
   ];
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-gray-600">
-            Find answers to common questions about our eKatha services
-          </p>
+    <>
+      <Header />
+      <section className="py-12 bg-black">
+        <div className="max-w-3xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-300">
+              Find answers to common questions about our eKatha services
+            </p>
+          </div>
+          <div>
+            {faqItems.map((item, index) => (
+              <FAQItem key={index} question={item.question} answer={item.answer} />
+            ))}
+          </div>
         </div>
-
-        <div>
-          {faqItems.map((item, index) => (
-            <FAQItem
-              key={index}
-              question={item.question}
-              answer={item.answer}
-            />
-          ))}
-        </div>
-
-      </div>
-    </section>
+      </section>
+      <Footer />
+    </>
   );
 };
 
