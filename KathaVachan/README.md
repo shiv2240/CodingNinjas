@@ -9,6 +9,7 @@ KathaVachan is a voice-assisted business solution designed to streamline and aut
 - **Real-Time Processing**: Provides instant feedback and data validation.
 - **Scalability**: Can be expanded to other government or business applications.
 
+
 ---
 
 ## 📌 Use Case
@@ -24,6 +25,7 @@ The BBMP requires eKatha documents for property registration, ownership verifica
 - 🤖 **AI-powered Processing** – Uses `@google/generative-ai` for intelligent automation.
 - ⚡ **React & Framer Motion** – Ensures a smooth and dynamic user experience.
 - 🛠 **3D Model Integration** – Powered by Three.js for an interactive UI.
+
 
 ---
 
