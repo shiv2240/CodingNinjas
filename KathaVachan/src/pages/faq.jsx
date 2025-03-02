@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import ChatBotToggle from "../components/chatBot";
 
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,6 +141,7 @@ const FAQ = () => {
           </div>
         </div>
       </section>
+      <ChatBotToggle/>
       <Footer />
     </>
   );

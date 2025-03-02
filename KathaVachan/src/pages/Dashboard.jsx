@@ -7,6 +7,7 @@ import ChatView from "./ChatView";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
+import ChatBotToggle from "../components/chatBot";
 
 const Dashboard = ({ setIsAssistantOpen }) => {
   const [userId, setUserId] = useState(null);
@@ -45,6 +46,7 @@ const Dashboard = ({ setIsAssistantOpen }) => {
   }
 
   return (
+    <>
     <div className="min-h-screen pt-24 pb-16">
       <Header />
       <div className="container mx-auto px-4">
@@ -128,6 +130,8 @@ const Dashboard = ({ setIsAssistantOpen }) => {
         </div>
       </div>
     </div>
+    <ChatBotToggle/>
+    </>
   );
 };
 

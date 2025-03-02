@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ChatBotToggle from "../components/chatBot";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -240,6 +241,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
+    <ChatBotToggle/>
     <Footer/>
     </>
   );

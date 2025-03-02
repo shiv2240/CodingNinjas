@@ -45,9 +45,9 @@ const App = () => {
           <Route path='/process' element={<Process/>} />
 
           <Route path='/dashboard' element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Dashboard/>
-            // </ProtectedRoute>
+            </ProtectedRoute>
             }/>
 
           <Route path='/contact' element={<Contact />} />
