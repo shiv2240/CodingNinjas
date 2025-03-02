@@ -4,12 +4,17 @@ import {  Routes, Route } from "react-router-dom";
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Home from './home';
+
 import Dashboard from './pages/Dashboard';
 import MyProfile from './pages/myProfile';
 import LearnMore from './pages/learnmorePage';
 import Process from './pages/process';
 import Loading from './components/loading';
 import ProtectedRoute from './utils/ProtectedRoute';
+
+import Contact from './pages/contact';
+import FAQItem  from './components/faq';
+import Features from './components/Features';
 
 const App = () => {
 
@@ -33,8 +38,9 @@ const App = () => {
           <Route path='/' element={<Home/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+
           <Route path='/profile' element={<MyProfile/>}/>
-          <Route path='/learnMore' element={<LearnMore/>}/>
+
           <Route path='/process' element={<Process/>} />
 
           <Route path='/dashboard' element={
@@ -42,9 +48,13 @@ const App = () => {
               <Dashboard/>
             // </ProtectedRoute>
             }/>
+
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/learnmore' element={<LearnMore />} />
+          <Route path='/faq' element={<FAQItem />} />
+          <Route path='/features' element={<Features />} />
+
         </Routes>
-    
   )
 }
-
 export default App

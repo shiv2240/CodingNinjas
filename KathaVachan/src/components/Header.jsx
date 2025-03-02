@@ -26,7 +26,7 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'py-5'}`}>
+      <header className={fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'py-5'}}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <a onClick={()=> navigate('/')} className="flex items-center">
             <img src="/logo.svg" alt="KathaVachan Logo" className="h-10 w-10" />
@@ -39,7 +39,7 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
                 navigate('/')
                 // setCurrentView('home')
               }}
-              className={`transition ${currentView === 'home' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'}`}
+              className={transition ${currentView === 'home' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'}}
             >
               Home
             </button>
@@ -57,7 +57,7 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
                     navigate('/dashboard')
                     // setCurrentView('dashboard')
                   }}
-                  className={`transition ${currentView === 'dashboard' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'}`}
+                  className={transition ${currentView === 'dashboard' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'}}
                 >
                   Dashboard
                 </button>
@@ -93,7 +93,7 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
                   setCurrentView('home')
                   setIsMenuOpen(false)
                 }}
-                className={`text-left py-2 ${currentView === 'home' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'} transition`}
+                className={text-left py-2 ${currentView === 'home' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'} transition}
               >
                 Home
               </button>
@@ -135,7 +135,7 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
                       navigate('/dashboard')
                       setIsMenuOpen(false)
                     }}
-                    className={`text-left py-2 ${currentView === 'dashboard' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'} transition`}
+                    className={text-left py-2 ${currentView === 'dashboard' ? 'text-primary' : 'text-dark dark:text-light hover:text-primary dark:hover:text-primary'} transition}
                   >
                     Dashboard
                   </button>
