@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
 import { FaInstagram, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-light dark:bg-dark pt-16 pb-8">
       <div className="container mx-auto px-4">
@@ -33,11 +36,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-secondary hover:text-primary transition">Home</a></li>
-              <li><a href="#features" className="text-secondary hover:text-primary transition">Features</a></li>
-              <li><a href="#process" className="text-secondary hover:text-primary transition">Process</a></li>
-              <li><a href="#faq" className="text-secondary hover:text-primary transition">FAQ</a></li>
-              <li><a href="#contact" className="text-secondary hover:text-primary transition">Contact</a></li>
+              <li><button onClick={()=> navigate('/')} className="text-secondary hover:text-primary transition">Home</button></li>
+              <li><button onClick={()=> navigate('/features')} className="text-secondary hover:text-primary transition">Features</button></li>
+              <li><button onClick={()=> navigate('/process')} className="text-secondary hover:text-primary transition">Process</button></li>
+              <li><button onClick={()=> navigate('/faq')} className="text-secondary hover:text-primary transition">FAQ</button></li>
+              <li><button onClick={()=> navigate('/contact')} className="text-secondary hover:text-primary transition">Contact</button></li>
             </ul>
           </div>
           

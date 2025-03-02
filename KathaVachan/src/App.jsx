@@ -14,7 +14,7 @@ import ProtectedRoute from './utils/ProtectedRoute';
 
 import Contact from './pages/contact';
 import FAQItem  from './components/faq';
-import Features from './components/Features';
+import Features1 from './components/features1';
 
 const App = () => {
 
@@ -52,7 +52,7 @@ const App = () => {
           <Route path='/contact' element={<Contact />} />
           <Route path='/learnmore' element={<LearnMore />} />
           <Route path='/faq' element={<FAQItem />} />
-          <Route path='/features' element={<Features />} />
+          <Route path='/features' element={<Features1 />} />
 
         </Routes>
   )

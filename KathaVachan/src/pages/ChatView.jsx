@@ -41,63 +41,101 @@ const ChatView = ({ userId, chatId, onClose }) => {
   const handleDownloadPDF = () => {
     setIsDownloading(true);
 
-    // Create a clone of the chat content for PDF generation
-    const element = document.getElementById('chat-content').cloneNode(true);
+    const userMessages = messages.filter(msg => msg.isUser);
+    if (userMessages.length === 0) {
+        alert("No user messages to download.");
+        setIsDownloading(false);
+        return;
+    }
 
-    // Add a header to the PDF with better styling for visibility
-    const header = document.createElement('div');
-    header.innerHTML = `
-      <div style="padding: 20px; text-align: center; margin-bottom: 20px; background-color: #f8f9fa; border-radius: 8px;">
-        <h1 style="font-size: 24px; margin-bottom: 10px; color: #0071e3;">KathaVachan eKatha Conversation</h1>
-        <p style="font-size: 16px; color: #333;">Property ID: ${chatId} | Date: ${formatDate(new Date())}</p>
-      </div>
+    const pageStyle = `
+        .pdf-page {
+            border: 0.5px solid black;
+            padding: 30px;
+            margin: 20px;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        .message-box {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 0.5px solid #aaa;
+            font-size: 16px;
+            line-height: 1.5;
+            page-break-inside: avoid;
+            box-sizing: border-box;
+        }
     `;
-    element.prepend(header);
 
-    // Style the messages for better PDF visibility
-    const messages = element.querySelectorAll('div[class*="rounded-xl"]');
-    messages.forEach(msg => {
-      // Check if it's a user message or assistant message
-      const isUserMessage = msg.classList.contains('bg-primary/10') || 
-                           msg.classList.contains('ml-auto');
-      
-      // Apply appropriate styling
-      msg.style.backgroundColor = isUserMessage ? 'black' : 'black';
-      msg.style.border = isUserMessage ? '1px solid #cce5ff' : '1px solid #e6e6e6';
-      msg.style.color = 'white';
-      msg.style.padding = '10px 15px';
-      msg.style.borderRadius = '8px';
-      msg.style.marginBottom = '10px';
-      msg.style.maxWidth = '80%';
-      msg.style.marginLeft = isUserMessage ? 'auto' : '0';
-      msg.style.marginRight = isUserMessage ? '0' : 'auto';
+    const pdfContent = document.createElement('div');
+    pdfContent.style.fontFamily = 'Arial, sans-serif';
+    pdfContent.style.color = '#333';
+    pdfContent.innerHTML = `<style>${pageStyle}</style>`;
+
+    const mainPage = document.createElement('div');
+    mainPage.classList.add('pdf-page');
+
+    mainPage.innerHTML += `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p style="font-size: 16px; font-weight: bold;">ID: ${chatId}</p>
+            <img src="./BBMP.png" alt="KathaVachan Logo" style="max-width: 120px;">
+        </div>
+        <h1 style="text-align: center; color: #333;">KathaVachan eKatha Validation</h1>
+        <p style="text-align: center; font-size: 16px; font-weight: bold;">Property ID: ${chatId} | Date: ${formatDate(new Date())}</p>
+        <hr style="margin: 20px 0; border: 1px solid #000;">
+    `;
+
+    mainPage.innerHTML += `<h2 style="text-align: left; color: black; font-size: 20px; font-weight: bold; margin-bottom: 10px;">Your Responses:</h2>`;
+
+    userMessages.forEach(msg => {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message-box');
+        messageDiv.textContent = `${msg.text}`;
+        mainPage.appendChild(messageDiv);
     });
 
-    // Configure PDF options with better quality
+    mainPage.innerHTML += `<div style="page-break-before: always;"></div>`;
+
+    mainPage.innerHTML += `
+        <h2 style="text-align: center; color: black; font-size: 24px; font-weight: bold; margin-bottom: 10px;">Full Chat Transcript</h2>
+    `;
+
+    messages.forEach(msg => {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message-box');
+        messageDiv.innerHTML = msg.isUser 
+  ? `<strong>User</strong> - ${msg.text}` 
+  : `<strong>AI</strong> - ${msg.text}`;
+
+        mainPage.appendChild(messageDiv);
+    });
+
+    mainPage.innerHTML += `
+        <hr style="margin: 20px 0; border: 1px solid #000;">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <p style="font-size: 16px; font-weight: bold; color: #333; display: flex; align-items: center;">
+                <img src="/K_Gov.png" alt="Security Icon" style="max-width: 50px; margin-right: 5px; vertical-align: middle;"> Approved by KathaVachan
+            </p>
+        </div>
+    `;
+
+    pdfContent.appendChild(mainPage);
+
     const options = {
-      margin: [20, 20],
-      filename: `KathaVachan_${chatId}.pdf`,
-      image: { type: 'jpeg', quality: 1.0 },
-      html2canvas: { 
-        scale: 2, 
-        useCORS: true,
-        letterRendering: true,
-        logging: false
-      },
-      jsPDF: { 
-        unit: 'mm', 
-        format: 'a4', 
-        orientation: 'portrait',
-        compress: true
-      }
+        margin: 10,
+        filename: `KathaVachan_${chatId}.pdf`,
+        image: { type: 'jpeg', quality: 1.0 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    // Generate PDF
-    html2pdf().from(element).set(options).save().then(() => {
-      setIsDownloading(false);
+    html2pdf().from(pdfContent).set(options).save().then(() => {
+        setIsDownloading(false);
     });
-  };
-
+};
   const handleReopenChat = () => {
     setIsReopenModalOpen(true);
   };
