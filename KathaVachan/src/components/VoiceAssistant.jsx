@@ -106,10 +106,10 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
   useEffect(() => {
     const fetchChats = async () => {
       if (!auth.currentUser) return;
-      
+
       const userId = auth.currentUser.uid;
       const chatsRef = ref(db, `users/${userId}/chats/${chatId}/messages`);
-  
+
       try {
         const snapshot = await get(chatsRef);
         if (snapshot.exists()) {
@@ -119,7 +119,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
         console.error("Error fetching chat sessions:", error);
       }
     };
-  
+
     fetchChats();
   }, [chatId]);
 
@@ -182,11 +182,21 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
           setStep(5)
           break
         case 5:
-          setFormData(prev => ({ ...prev, propertyType: input }))
-          addMessage("Thank you for providing all the information! I'm now creating your eKatha document. You'll receive it via email shortly.", false)
+          setFormData(prev => ({ ...prev, email: input }))
+          addMessage("What is your property's size in sq. foot?)", false)
           setStep(6)
           break
         case 6:
+          setFormData(prev => ({ ...prev, email: input }))
+          addMessage("What is the amount you wish to invest in it.)", false)
+          setStep(7)
+          break
+        case 7:
+          setFormData(prev => ({ ...prev, propertyType: input }))
+          addMessage("Thank you for providing all the information! I'm now creating your eKatha document. You'll receive it via email shortly. You have to attach the valid documents by clicking on the + icon or else your application will get rejected.", false)
+          setStep(8)
+          break
+        case 8:
           if (input.toLowerCase().includes('status')) {
             addMessage("Your eKatha application is currently being processed. It typically takes 3-5 business days to complete.", false)
           } else if (input.toLowerCase().includes('document') || input.toLowerCase().includes('upload')) {

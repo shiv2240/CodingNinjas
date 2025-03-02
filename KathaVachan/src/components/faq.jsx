@@ -66,6 +66,58 @@ const FAQ = () => {
       answer:
         "We implement enterprise-grade encryption and security protocols to protect all your data. Your information is only used for the eKatha application process and is never shared with unauthorized third parties.",
     },
+      {
+        "question": "What is e-Katha?",
+        "answer": "e-Katha is the digital version of the property Katha certificate issued online by BBMP, allowing property owners to apply, track, and manage their Katha online."
+      },
+      {
+        "question": "Who is eligible to apply for e-Katha?",
+        "answer": "Property owners in BBMP limits who have proper ownership documents and up-to-date tax payments."
+      },
+      {
+        "question": "How can I apply for e-Katha online?",
+        "answer": "You can apply through the BBMP Sakala website or the official BBMP e-Katha portal by submitting the required documents and paying the necessary fees."
+      },
+      {
+        "question": "Can I apply for e-Katha without a sale deed?",
+        "answer": "No, a valid sale deed is mandatory to establish ownership."
+      },
+      {
+        "question": "What are the steps for transferring e-Katha to a new owner?",
+        "answer": "Submit an online application with the sale deed and previous owner’s Katha. Pay the processing fee. Await BBMP verification and approval."
+      },
+      {
+        "question": "How long does the e-Katha transfer process take?",
+        "answer": "It typically takes 30–45 days after document submission and verification."
+      },
+      {
+        "question": "What if the previous owner did not have a Katha?",
+        "answer": "You will need to apply for a new Katha with additional supporting documents like the encumbrance certificate and property tax receipts."
+      },
+      {
+        "question": "Is property tax payment mandatory before applying for e-Katha?",
+        "answer": "Yes, all dues must be cleared before submission."
+      },
+      {
+        "question": "How can I check my property tax details before applying for e-Katha?",
+        "answer": "You can check the tax status on the BBMP website by entering your property ID."
+      },
+      {
+        "question": "How can I track my e-Katha application status?",
+        "answer": "You can check the status on the BBMP Sakala website using your application number."
+      },
+      {
+        "question": "What should I do if my e-Katha application is rejected?",
+        "answer": "Review the rejection reason, correct the issues, and reapply with the necessary documents."
+      },
+      {
+        "question": "Can I apply for Katha bifurcation online?",
+        "answer": "Yes, you need to provide the sale deed, tax receipts, and a legal affidavit."
+      },
+      {
+        "question": "What if I want to merge two properties under one e-Katha?",
+        "answer": "Apply for Katha amalgamation with all relevant property documents."
+      }  
   ];
 
   return (
