@@ -111,7 +111,6 @@ npm run dev
 ## 📎 Resources & Links
 - **GitHub Repo**: [KathaVachan](https://github.com/shiv2240/CodingNinjas)  
 - **Demo Video**: [Watch Here](#)
-- **Google Drive Assets**: [Access Here](#)
 
 ---
 
