@@ -3,11 +3,18 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { TbMessageChatbotFilled} from "react-icons/tb";
+import { TbMessageChatbotFilled } from "react-icons/tb";
 import { FaRobot } from "react-icons/fa";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
+
+const speakText = (text) => {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+};
 
 const ChatBot = ({ onClose }) => {
   const [messages, setMessages] = useState([
@@ -24,8 +31,14 @@ const ChatBot = ({ onClose }) => {
     }
   }, [browserSupportsSpeechRecognition]);
 
+  useEffect(() => {
+    // Speak the initial message when the chatbot opens
+    speakText(messages[0].text);
+  }, []);
+
   const addMessage = (text, isUser) => {
     setMessages(prev => [...prev, { text, isUser }]);
+    if (!isUser) speakText(text); // Speak only bot messages
   };
 
   const handleListen = () => {
@@ -91,8 +104,7 @@ const ChatBot = ({ onClose }) => {
           onClick={e => e.stopPropagation()}
         >
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            <h3 className="font-semibold  gradient-text">KathaVachan Assistant <span className='ml-2 '><FaRobot className='inline text-white text-2xl'/></span></h3>
-            
+            <h3 className="font-semibold gradient-text">KathaVachan Assistant <span className='ml-2 '><FaRobot className='inline text-white text-2xl'/></span></h3>
             <button onClick={onClose} className="text-secondary hover:text-dark">✕</button>
           </div>
           
@@ -141,7 +153,7 @@ const ChatBotToggle = () => {
   };
 
   return (
-    <div >
+    <div>
       <button
         onClick={handleToggleChatBot}
         className="fixed bottom-4 animate-bounce right-4 bg-primary hover:bg-blue-600 text-white font-semibold p-2 rounded-full transition duration-300 z-50"
