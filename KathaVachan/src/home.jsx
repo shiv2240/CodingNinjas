@@ -7,6 +7,7 @@ import Features from './components/Features'
 import Footer from './components/Footer'
 import ModelViewer from './components/ModelViewer'
 import { CustomCursor } from './components/customCursor'
+import ChatBotToggle from './components/chatBot'
 import './App.css'
 
 function Home() {
@@ -23,6 +24,7 @@ function Home() {
   }, [])
 
   return (
+    <>
     <div className="relative">
       <CustomCursor/>
       {/* <Routing/> */}
@@ -69,6 +71,8 @@ function Home() {
         <VoiceAssistant onClose={() => setIsAssistantOpen(false)} />
       )}
     </div>
+    <ChatBotToggle/>
+    </>
   )
 }
 
