@@ -4,11 +4,13 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { CustomCursor } from '../components/customCursor';
 import '../App.css';
+import ChatBotToggle from '../components/chatBot';
 
 const LearnMore = () => {
   const navigate = useNavigate();
 
   return (
+    <>
     <div className="relative">
       <CustomCursor />
       <Header />
@@ -129,6 +131,8 @@ const LearnMore = () => {
 
       <Footer />
     </div>
+    <ChatBotToggle/>
+    </>
   );
 };
 

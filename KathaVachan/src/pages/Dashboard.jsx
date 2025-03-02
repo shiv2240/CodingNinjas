@@ -5,11 +5,16 @@ import { motion } from "framer-motion";
 import ChatHistory from "./ChatHistory";
 import ChatView from "./ChatView";
 import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/authContext";
+import ChatBotToggle from "../components/chatBot";
 
-const Dashboard = () => {
+const Dashboard = ({ setIsAssistantOpen }) => {
   const [userId, setUserId] = useState(null);
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const {currentUser} = useAuth();
 
   useEffect(() => {
     // Listen for auth state changes
@@ -32,8 +37,16 @@ const Dashboard = () => {
   if (!userId) {
     return <p className="text-lg text-secondary text-center">Please log in to view your chats.</p>;
   }
+  function handleClick(){
+    if (currentUser) {
+        setIsAssistantOpen(true);
+      } else {
+        setShowModal(true);
+    }
+  }
 
   return (
+    <>
     <div className="min-h-screen pt-24 pb-16">
       <Header />
       <div className="container mx-auto px-4">
@@ -85,7 +98,7 @@ const Dashboard = () => {
             <div className="glass rounded-2xl p-6">
               <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
               <div className="space-y-3">
-                <button className="w-full bg-primary hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-xl transition flex items-center justify-center">
+                <button onClick={handleClick} className="w-full bg-primary hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-xl transition flex items-center justify-center">
                   <span className="material-symbols-rounded mr-2">add</span>
                   New eKatha
                 </button>
@@ -93,7 +106,7 @@ const Dashboard = () => {
                   <span className="material-symbols-rounded mr-2">upload_file</span>
                   Upload Documents
                 </button>
-                <button className="w-full border border-gray-300 dark:border-gray-700 hover:border-primary hover:text-primary font-medium py-2 px-4 rounded-xl transition flex items-center justify-center">
+                <button onClick={()=> navigate("/contact")} className="w-full border border-gray-300 dark:border-gray-700 hover:border-primary hover:text-primary font-medium py-2 px-4 rounded-xl transition flex items-center justify-center">
                   <span className="material-symbols-rounded mr-2">help</span>
                   Get Support
                 </button>
@@ -117,6 +130,8 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    <ChatBotToggle/>
+    </>
   );
 };
 

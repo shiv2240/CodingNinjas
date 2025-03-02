@@ -69,6 +69,12 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
             Process
           </button>
           <button
+            onClick={() => navigate("/team")}
+            className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition"
+          >
+            Team
+          </button>
+          <button
             onClick={() => navigate('/contact')}
             className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition"
           >
@@ -161,6 +167,16 @@ const Header = ({ scrollY, currentView, setCurrentView }) => {
               }}
             >
               Process
+            </button>
+            <button
+
+              className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition py-2"
+              onClick={() => {
+                navigate('/team')
+                setIsMenuOpen(false)
+              }}
+            >
+              Team
             </button>
             <button
               className="text-dark dark:text-light hover:text-primary dark:hover:text-primary transition py-2"

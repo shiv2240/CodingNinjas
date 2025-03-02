@@ -9,7 +9,14 @@ KathaVachan is a voice-assisted business solution designed to streamline and aut
 - **Real-Time Processing**: Provides instant feedback and data validation.
 - **Scalability**: Can be expanded to other government or business applications.
 
+
 ---
+
+## 📌 Use Case
+The BBMP requires eKatha documents for property registration, ownership verification, and legal compliance. Traditionally, this process involves manual data entry, which can be time-consuming and prone to errors. KathaVachan automates this process by using a voice assistant to collect necessary data and generate accurate documents, ensuring faster and more reliable document creation.
+
+---
+
 
 ## 📌 Features
 - 🎤 **Voice Assistant** – Enables hands-free data collection.
@@ -18,6 +25,7 @@ KathaVachan is a voice-assisted business solution designed to streamline and aut
 - 🤖 **AI-powered Processing** – Uses `@google/generative-ai` for intelligent automation.
 - ⚡ **React & Framer Motion** – Ensures a smooth and dynamic user experience.
 - 🛠 **3D Model Integration** – Powered by Three.js for an interactive UI.
+
 
 ---
 

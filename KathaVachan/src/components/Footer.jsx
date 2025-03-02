@@ -47,11 +47,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Resources</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-secondary hover:text-primary transition">BBMP Guidelines</a></li>
-              <li><a href="#" className="text-secondary hover:text-primary transition">eKatha Documentation</a></li>
-              <li><a href="#" className="text-secondary hover:text-primary transition">Property Laws</a></li>
-              <li><a href="#" className="text-secondary hover:text-primary transition">Privacy Policy</a></li>
-              <li><a href="#" className="text-secondary hover:text-primary transition">Terms of Service</a></li>
+              <li><button onClick={()=> navigate("/privacy")} className="text-secondary hover:text-primary transition">BBMP Guidelines</button></li>
+              <li><button onClick={()=> navigate("/privacy")} className="text-secondary hover:text-primary transition">eKatha Documentation</button></li>
+              <li><button onClick={()=> navigate("/privacy")} className="text-secondary hover:text-primary transition">Property Laws</button></li>
+              <li><button onClick={()=> navigate("/privacy")} className="text-secondary hover:text-primary transition">Privacy Policy</button></li>
+              <li><button onClick={()=> navigate("/privacy")} className="text-secondary hover:text-primary transition">Terms of Service</button></li>
             </ul>
           </div>
           
