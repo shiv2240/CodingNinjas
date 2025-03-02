@@ -7,6 +7,7 @@ import Contact from './pages/contact';
 import LearnMore from './pages/learnMore';
 import FAQItem  from './components/faq';
 import Features from './components/Features';
+import Process from './pages/process'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/learnmore' element={<LearnMore />} />
           <Route path='/faq' element={<FAQItem />} />
           <Route path='/features' element={<Features />} />
+          <Route path='/process' element={<Process />}   />
         </Routes>
   )
 }
