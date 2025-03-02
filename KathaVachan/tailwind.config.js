@@ -15,6 +15,12 @@ export default {
       fontFamily: {
         sans: ['"SF Pro Display"', 'system-ui', 'sans-serif'],
       },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
     },
   },
   plugins: [],

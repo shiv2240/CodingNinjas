@@ -5,8 +5,11 @@ import { useAuth } from '../contexts/authContext';
 import { FcGoogle } from 'react-icons/fc';
 import { motion } from 'framer-motion';
 
+// Import Firebase Database
+import { getDatabase, ref, set } from 'firebase/database';
+
 const Login = () => {
-    const [formData, setFormData] = useState({ email: "", password: "" });
+    const [formData, setFormData] = useState({ name: "", email: "", password: "" });
     const navigate = useNavigate();
     const { login, googleSignIn } = useAuth();
 
@@ -17,18 +20,29 @@ const Login = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (!formData.email || !formData.password) {
-            toast.error("Please enter your email and password to login");
+        if (!formData.name || !formData.email || !formData.password) {
+            toast.error("Please enter your name, email, and password to login");
             return;
         }
+
         try {
-            await login(formData.email, formData.password);
+            const userCredential = await login(formData.email, formData.password);
+            const user = userCredential.user;
+
+            // Store the name & email in Firebase Realtime Database
+            const db = getDatabase();
+            await set(ref(db, `users/${user.uid}/profile`), {
+                name: formData.name,
+                email: formData.email
+            });
+
             toast.success('Logged in Successfully!');
             navigate('/');
         } catch (err) {
             toast.error(err.message);
         }
     }
+    
 
     const handleGoogleSignIn = async () => {
         try {
@@ -44,6 +58,7 @@ const Login = () => {
         <div className='w-full h-screen flex flex-col md:flex-row'>
             <Toaster />
 
+            {/* Left Section (Video & Branding) */}
             <div className='w-full sm:w-1/4 md:w-1/2 h-screen relative flex items-center justify-center bg-black'>
                 <video autoPlay loop muted playsInline className='w-full h-full object-cover'>
                     <source src='/videos/ekatha.mp4' type='video/mp4' />
@@ -52,7 +67,7 @@ const Login = () => {
 
                 <div className="absolute inset-0 bg-black/50"></div>
 
-                <div className="absolute top-5 left-5 flex items-center cursor-pointer" onClick={()=> navigate('/')}>
+                <div className="absolute top-5 left-5 flex items-center cursor-pointer" onClick={() => navigate('/')}>
                     <img src='/logo.svg' alt='Logo' className='w-10 h-10 object-contain' />
                     <span className='text-white text-2xl font-semibold ml-3'>KathaVachan</span>
                 </div>
@@ -61,7 +76,7 @@ const Login = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 3 }}
+                    transition={{ duration: 1 }}
                     className="absolute text-center text-white px-8 hidden sm:block"
                 >
                     <h2 className="text-4xl font-extrabold bg-gradient-to-r from-sky-400 to-blue-600 text-transparent bg-clip-text">
@@ -73,7 +88,7 @@ const Login = () => {
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 3 }}
+                        transition={{ delay: 0.5, duration: 1 }}
                         className="text-lg mt-2 font-medium text-gray-300"
                     >
                         Your **business voice assistant** for seamless **data collection & eKatha creation**.
@@ -81,7 +96,7 @@ const Login = () => {
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.5, duration: 3}}
+                        transition={{ delay: 1, duration: 1 }}
                         className="text-lg mt-2 text-gray-400 italic"
                     >
                         "Efficiency is not an option—it's the new standard." ✨
@@ -89,20 +104,31 @@ const Login = () => {
                 </motion.div>
             </div>
 
-
-
+            {/* Right Section (Login Form) */}
             <div className='w-full md:w-1/2 h-screen flex items-center justify-center bg-gray-900 px-6'>
                 <motion.form
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                     onSubmit={handleSubmit}
-                    className='w-full max-w-sm glass border border-gray-200 shadow-xl shadow-blue-500/30 p-8 rounded-2xl'>
-
+                    className='w-full max-w-sm glass border border-gray-200 shadow-xl shadow-blue-500/30 p-8 rounded-2xl'
+                >
                     <h1 className='text-3xl text-white font-medium mb-8 py-4 text-center'>
                         𝖂𝖊𝖑𝖈𝖔𝖒𝖊 𝖙𝖔 <span className="bg-gradient-to-r from-blue-400 to-sky-500 text-transparent bg-clip-text text-4xl">𝖑𝖔𝖌𝖎𝖓</span> ✍
                     </h1>
 
+                    {/* Name Input */}
+                    <label className='text-gray-300'>Name</label>
+                    <input
+                        className='border border-gray-300 px-2 text-black bg-gray-100 py-1.5 rounded my-2 mb-4 w-full'
+                        type='text'
+                        placeholder='Enter Your Name'
+                        name='name'
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+
+                    {/* Email Input */}
                     <label className='text-gray-300'>Email</label>
                     <input
                         className='border border-gray-300 px-2 text-black bg-gray-100 py-1.5 rounded my-2 mb-4 w-full'
@@ -113,6 +139,7 @@ const Login = () => {
                         onChange={handleChange}
                     />
 
+                    {/* Password Input */}
                     <label className='text-gray-300'>Password</label>
                     <input
                         className='border border-gray-300 text-black rounded my-2 bg-gray-100 px-2 py-1.5 w-full'
