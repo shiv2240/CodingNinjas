@@ -111,6 +111,7 @@ npm run dev
 ## 📎 Resources & Links
 - **GitHub Repo**: [KathaVachan](https://github.com/shiv2240/CodingNinjas)  
 - **Demo Video**: [Watch Here](#)
+- **Deployment Link**: [KathaVachan](https://kathavachan.netlify.app/)
 
 ---
 
