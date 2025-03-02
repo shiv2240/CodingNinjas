@@ -56,7 +56,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
   useEffect(() => {
     const createChatSession = async () => {
       if (!chatId) {
-        const chatsRef = ref(db, users/${userId}/chats);
+        const chatsRef = ref(db, `users/${userId}/chats`);
         const newChatRef = push(chatsRef);
         setChatId(newChatRef.key);
       }
@@ -95,7 +95,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
       return;
     }
 
-    const messageRef = ref(db, users/${userId}/chats/${chatId}/messages);
+    const messageRef = ref(db, `users/${userId}/chats/${chatId}/messages`);
     push(messageRef, {
       text,
       isUser,
@@ -108,7 +108,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
       if (!auth.currentUser) return;
       
       const userId = auth.currentUser.uid;
-      const chatsRef = ref(db, users/${userId}/chats/${chatId}/messages);
+      const chatsRef = ref(db, `users/${userId}/chats/${chatId}/messages`);
   
       try {
         const snapshot = await get(chatsRef);
@@ -147,7 +147,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
     const file = event.target.files[0];
     if (file) {
       setUploadedFile(file); // Store the file in state
-      addMessage(📄 ${file.name} uploaded, true); // Display file in chat
+      addMessage(`📄 ${file.name} uploaded`, true); // Display file in chat
     }
   };
 
@@ -158,7 +158,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
       switch (step) {
         case 0:
           setFormData(prev => ({ ...prev, name: input }))
-          addMessage(Thanks, ${input}! Now, please tell me your property address., false)
+          addMessage(`Thanks, ${input}! Now, please tell me your property address.`, false)
           setStep(1)
           break
         case 1:
@@ -220,7 +220,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className={${!propertyData ? "fixed inset-0 bg-black/50 backdrop-blur-sm z-50" : ""} flex items-center justify-center p-4}
+        className={`${!propertyData ? "fixed inset-0 bg-black/50 backdrop-blur-sm z-50" : ""} flex items-center justify-center p-4`}
         onClick={onClose}
       >
         <motion.div
@@ -240,7 +240,7 @@ const VoiceAssistant = ({ onClose, initialMessages = null, propertyData = null }
 
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message, index) => (
-              <div key={index} className={${message.isUser ? 'ml-auto bg-primary/10' : 'mr-auto glass'} rounded-xl p-3 max-w-[80%]}>
+              <div key={index} className={`${message.isUser ? 'ml-auto bg-primary/10' : 'mr-auto glass'} rounded-xl p-3 max-w-[80%]`}>
                 <p>{message.text}</p>
               </div>
             ))}
