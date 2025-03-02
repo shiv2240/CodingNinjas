@@ -6,7 +6,6 @@ import VoiceAssistant from './components/VoiceAssistant'
 import Features from './components/Features'
 import Footer from './components/Footer'
 import ModelViewer from './components/ModelViewer'
-// import Routing from './routing'
 import { CustomCursor } from './components/customCursor'
 import './App.css'
 
